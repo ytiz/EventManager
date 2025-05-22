@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block title %} Home Page {% endblock %}
+{% block content %}
+<h1>Welcome{% if user.is_authenticated %}, {{ user.username }}{% endif %}!</h1>
+
+<div class="container mt-5">
+
+  <!-- Description -->
+  <div class="text-center mb-5">
+    <h1>Welcome to the Events Management System</h1>
+    <p class="lead">
+      Discover and manage events with ease. Whether you're attending or organizing, our platform simplifies the entire experience.
+    </p>
+  </div>
+
+  <!-- Image Carousel -->
+  <div id="eventCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://image.freepik.com/free-photo/black-silhouettes-music-concert-poster-concept_1194-617147.jpg" class="d-block w-100" alt="Concert">
+        </div>
+        <div class="carousel-item">
+          <img src="https://img.freepik.com/free-photo/tech-conference-presentation_23-2151932841.jpg?ga=GA1.1.377002188.1744796152&semt=ais_hybrid&w=740" class="d-block w-100" alt="Tech Conference">
+        </div>
+        <div class="carousel-item">
+          <img src="https://img.freepik.com/free-photo/medium-shot-people-learning_23-2149300715.jpg?ga=GA1.1.377002188.1744796152&semt=ais_hybrid&w=740" class="d-block w-100" alt="Workshop">
+        </div>
+        <div class="carousel-item">
+            <img src="https://img.freepik.com/free-photo/people-soccer-stadium_23-2151548554.jpg?ga=GA1.1.377002188.1744796152&semt=ais_hybrid&w=740" class="d-block w-100" alt="Stadium">
+          </div>
+      </div>
+    <a class="carousel-control-prev" href="#eventCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a class="carousel-control-next" href="#eventCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+  </div>
+
+</div>
+{% endblock %}
+
