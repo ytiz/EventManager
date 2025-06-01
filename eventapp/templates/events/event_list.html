@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Discover Events{% endblock %}
+
+{% block content %}
+<h2 style="font-size: 2em; font-weight: bold; margin-bottom: 1em;">Available Events</h2>
+
+<form method="get" style="margin-bottom: 2em; display: flex; gap: 1em; flex-wrap: wrap;">
+  <input type="text" name="search" placeholder="Search events..." style="padding: 0.5em; flex: 1; min-width: 200px;" />
+  
+  <select name="category" style="padding: 0.5em; min-width: 150px;">
+    <option value="">All Categories</option>
+    {% for cat in categories %}
+      <option value="{{ cat.id }}">{{ cat.name|title }}</option>
+    {% endfor %}
+  </select>
+
+  <button type="submit" style="padding: 0.5em 1em; background-color: #007BFF; color: white; border: none; border-radius: 5px;">
+    Filter
+  </button>
+</form>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5em;">
+  {% for event in events %}
+    <div style="background: white; padding: 1.5em; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+      <h3 style="margin-top: 0;">{{ event.title|title }}</h3>
+      <p><strong>Date:</strong> {{ event.date|date:"M d, Y H:i" }}</p>
+      <p><strong>Location:</strong> {{ event.location|title }}</p>
+      <p><strong>Category:</strong> {{ event.category|title }}</p>
+      <p><strong>Price:</strong> ${{ event.price }}</p>
+      <p style="margin-top: 1em;">{{ event.description|linebreaks|truncatewords:20 }}</p>
+      <a href="#" style="display: inline-block; margin-top: 1em; background: #28a745; color: white; padding: 0.5em 1em; border-radius: 6px; text-decoration: none;">Register</a>
+    </div>
+  {% empty %}
+    <p>No events found.</p>
+  {% endfor %}
+</div>
+{% endblock %}

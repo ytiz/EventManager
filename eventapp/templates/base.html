@@ -28,12 +28,17 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item {% if request.path == '/' %}active{% endif %}">
             <a class="nav-link" href="{% url 'home' %}">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Events Portal</a>
+          <li class="nav-item {% if request.path == '/events/' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'event_list' %}">Browse Events</a>
           </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item {% if request.path == '/events/create/' %}active{% endif %}">
+              <a class="nav-link" href="{% url 'create_event' %}">Create Event</a>
+            </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
           </li>

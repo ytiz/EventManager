@@ -1,6 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+LOCATION_CHOICES = [
+    ('hall_a', 'Hall A'),
+    ('hall_b', 'Hall B'),
+    ('johns_house', "John's House"),
+]
+CATEGORY_CHOICES = [
+    ('music', 'Music'),
+    ('sports', 'Sports'),
+    ('tech', 'Technology'),
+    ('other', 'Other')
+]
 class EventCategory(models.Model):
     name = models.CharField(max_length=100)
 
@@ -12,11 +23,11 @@ class Event(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     date = models.DateTimeField()
-    location = models.CharField(max_length=200)
+    location = models.CharField(max_length=100, choices=LOCATION_CHOICES)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     is_vip_available = models.BooleanField(default=False)
     organizer = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ForeignKey(EventCategory, on_delete=models.SET_NULL, null=True)
+    category = models.CharField(choices=CATEGORY_CHOICES, default='music')
 
     def __str__(self):
         return self.title
