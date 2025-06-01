@@ -1,3 +1,5 @@
+from sys import maxunicode
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -27,7 +29,7 @@ class Event(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     is_vip_available = models.BooleanField(default=False)
     organizer = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.CharField(choices=CATEGORY_CHOICES, default='music')
+    category = models.CharField(choices=CATEGORY_CHOICES, default='music', max_length=100)
 
     def __str__(self):
         return self.title
